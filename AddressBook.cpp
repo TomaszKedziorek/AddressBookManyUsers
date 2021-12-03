@@ -14,16 +14,6 @@ string AddressBook::getUsersFileName() {
     return usersFileName;
 }
 
-void AddressBook::saveNewUser( User &newUser ) {
-    fstream fileUsers;
-    fileUsers.open( usersFileName.c_str(),  ios::app );
-    fileUsers<< newUser.getID();
-    fileUsers<< '|';
-    fileUsers<< newUser.getLogin() + '|';
-    fileUsers<< newUser.getPassword() + '|'<<endl;
-    fileUsers.close();
-}
-
 void AddressBook::loadUsersFile( ) {
     fstream fileUsers;
     checkFileExistence( usersFileName );
@@ -70,12 +60,19 @@ void AddressBook::registration(  ) {
     cin>> userPassword;
     User newUser( userLogin, userPassword, users.size()+1 );
 
-    users.push_back(newUser);
+    users.push_back( newUser );
 
-    saveNewUser( newUser );
+    saveNewUser( newUser.changeUserDataToOneLine() );
     cout<< "Uzytkownik " << userLogin << " zostal zapisany." <<endl;
 
     Sleep(1000);
+}
+
+void AddressBook::saveNewUser( string userOneLineData ) {
+    fstream fileUsers;
+    fileUsers.open( usersFileName.c_str(),  ios::app );
+    fileUsers<< userOneLineData <<endl;
+    fileUsers.close();
 }
 
 int AddressBook::signIn(  ) {
@@ -117,19 +114,19 @@ int AddressBook::signIn(  ) {
     }
 }
 
-void AddressBook::changePassword( User &users ) {
+void AddressBook::changePassword( User &user ) {
     string newPassword;
     displayTitle( "   Zmiana hasla" );
     displayTitle( "Podaj nowe haslo: ", false, false);
     cin>> newPassword;
-    users.setPassword( newPassword );
-    saveAfterPasswordChange ( users );
+    user.setPassword( newPassword );
+    saveAfterPasswordChange ( user.changeUserDataToOneLine(), user.getID() );
     cout<<"Haslo zostalo zmienione.";
     Sleep(1000);
 
 }
 
-void AddressBook::saveAfterPasswordChange ( User &users ) {
+void AddressBook::saveAfterPasswordChange ( string userOneLineData, int userID ) {
     string temporaryFileName = usersFileName.substr(0, usersFileName.length() - 4) + "_Tymczasowy.txt" ;
     fstream usersFile;
     fstream tempUsersFile;
@@ -139,12 +136,8 @@ void AddressBook::saveAfterPasswordChange ( User &users ) {
     tempUsersFile.open( temporaryFileName.c_str(),  ios::out );
 
     while( getline( usersFile, fileLine ) ) {
-
-        if( atoi( fileLine.c_str() ) == users.getID() ) {
-            tempUsersFile<< users.getID();
-            tempUsersFile<< '|';
-            tempUsersFile<< users.getLogin() + '|';
-            tempUsersFile<< users.getPassword() + '|'<<endl;
+        if( atoi( fileLine.c_str() ) == userID ) {
+            tempUsersFile<< userOneLineData <<endl;
         } else {
             tempUsersFile<< fileLine <<endl;
         }

@@ -20,9 +20,6 @@ public:
     string getPassword();
     int getID();
     string changeUserDataToOneLine();
-
-    //friend vector<User>::iterator Reglog::findUserID( vector<User> &users, int IDLoggedUser );
-
 };
 
 
