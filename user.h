@@ -9,7 +9,7 @@ class User{
     string login;
     string password;
     int userID;
-    void showUserData();
+
 
 public:
     User( string = "000", string ="000", int = 0 );
@@ -20,6 +20,7 @@ public:
     string getPassword();
     int getID();
     string changeUserDataToOneLine();
+    void showUserData();
 };
 
 
