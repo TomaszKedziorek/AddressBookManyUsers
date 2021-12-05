@@ -2,9 +2,12 @@
 #include "userMenager.h"
 
 using namespace std;
+UserMenager::UserMenager( string usersFileName ) :userFile( usersFileName ){};
+
 void UserMenager::loadUsersFromFile(){
     users = userFile.loadUsersFile(  );
 }
+
 void UserMenager::registration(  ) {
     string userLogin ="", userPassword ="";
     displayTitle( "   Rejestracja" );

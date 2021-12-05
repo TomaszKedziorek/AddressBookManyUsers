@@ -2,13 +2,7 @@
 #include "commonFunk.h"
 #include "user.h"
 
-UsersFile::UsersFile( string fileName ) {
-    usersFileName = fileName;
-}
-
-void UsersFile::setUsersFileName( string fileName ) {
-    usersFileName = fileName;
-}
+UsersFile::UsersFile( string USERSFILENAME ): usersFileName( USERSFILENAME ){};
 
 string UsersFile::getUsersFileName() {
     return usersFileName;

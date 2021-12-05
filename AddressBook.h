@@ -11,7 +11,7 @@ class AddressBook{
     UserMenager userMenager;
 
 public:
-    AddressBook();
+    AddressBook( string usersFileName );
     void registration();
     void showAllUsers();
     int signIn();

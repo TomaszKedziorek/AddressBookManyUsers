@@ -10,11 +10,10 @@
 using namespace std;
 
 class UsersFile{
-    string usersFileName;
-public:
-    UsersFile( string = "wszyscyUzytkownicy.txt" );
-    void setUsersFileName( string fileName );
+    const string usersFileName;
     string getUsersFileName();
+public:
+    UsersFile( string USERSFILENAME );
     vector<User> loadUsersFile( );
     void saveNewUser( string userOneLineData );
     void saveAfterPasswordChange ( string userOneLineData,  int userID  );

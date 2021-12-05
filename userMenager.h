@@ -13,6 +13,7 @@ class UserMenager{
     vector<User> users;
     UsersFile userFile;
 public:
+    UserMenager( string usersFileName );
     void loadUsersFromFile();
     void registration();
     int signIn();

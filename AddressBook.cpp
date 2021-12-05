@@ -2,10 +2,11 @@
 #include <iostream>
 using namespace std;
 
-AddressBook::AddressBook(){
+AddressBook::AddressBook( string usersFileName )
+:userMenager( usersFileName ){
     userMenager.loadUsersFromFile();
-
 }
+
 void AddressBook::showAllUsers(){
     userMenager.showAllUsers();
     Sleep(2000);

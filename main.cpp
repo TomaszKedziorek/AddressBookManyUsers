@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    AddressBook addressBook;
+    AddressBook addressBook( "wszyscyUzytkownicy.txt" );
     addressBook.showAllUsers();
 
     addressBook.registration();
