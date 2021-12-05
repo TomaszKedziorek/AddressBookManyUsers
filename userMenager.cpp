@@ -72,20 +72,7 @@ int UserMenager::signIn(  ) {
         return 0;
     }
 }
-
-void UserMenager::changePassword( User &user ) {
-    string newPassword = "";
-    displayTitle( "   Zmiana hasla" );
-    displayTitle( "Podaj nowe haslo: ", false, false);
-    cin>> newPassword;
-    user.setPassword( newPassword );
-    userFile.saveAfterPasswordChange ( user.changeUserDataToOneLine(), user.getID() );
-    cout<<"Haslo zostalo zmienione.";
-    Sleep(1000);
-
-}
-
-vector<User>::iterator UserMenager::findUserID( int IDLoggedUser ) {
+vector<User>::iterator UserMenager::findUserByID( int IDLoggedUser ) {
     vector<User>::iterator itr = users.begin();
     vector<User>::iterator endOfVector = users.end();
     while( itr != endOfVector ) {
@@ -96,6 +83,21 @@ vector<User>::iterator UserMenager::findUserID( int IDLoggedUser ) {
     }
     return itr;
 }
+
+void UserMenager::changePassword( int IDLoggedUser  ) {
+    string newPassword = "";
+    displayTitle( "   Zmiana hasla" );
+    displayTitle( "Podaj nowe haslo: ", false, false);
+    vector<User>::iterator loggedUser = findUserByID( IDLoggedUser );
+    cin>> newPassword;
+    (*loggedUser).setPassword( newPassword );
+    userFile.saveAfterPasswordChange ( (*loggedUser).changeUserDataToOneLine(), (*loggedUser).getID() );
+    cout<<"Haslo zostalo zmienione.";
+    Sleep(1000);
+
+}
+
+
 
 int UserMenager::signOut() {
     displayTitle("Wylogouwywanie...");

@@ -48,7 +48,7 @@ void UsersFile::saveAfterPasswordChange ( string userOneLineData, int userID ) {
     string temporaryFileName = usersFileName.substr(0, usersFileName.length() - 4) + "_Tymczasowy.txt" ;
     fstream tempUsersFile;
     fstream fileUsers;
-    string fileLine;
+    string fileLine ="";
     fileUsers.open( usersFileName.c_str(),  ios::in );
     tempUsersFile.open( temporaryFileName.c_str(),  ios::out );
 
