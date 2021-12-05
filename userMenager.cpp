@@ -6,7 +6,7 @@ void UserMenager::loadUsersFromFile(){
     users = userFile.loadUsersFile(  );
 }
 void UserMenager::registration(  ) {
-    string userLogin, userPassword;
+    string userLogin ="", userPassword ="";
     displayTitle( "   Rejestracja" );
     cout<< "Liczba uzytkownikow: " << users.size() <<endl;
     cout<< "Podaj  login: " ;
@@ -32,9 +32,9 @@ void UserMenager::registration(  ) {
 }
 
 int UserMenager::signIn(  ) {
-    string userLogin, userPassword;
+    string userLogin ="", userPassword ="";
     bool user = false;
-    int unsigned i=0;
+    int unsigned i = 0;
     int attempt = 3;
     displayTitle( "   Logowanie" );
     while( attempt>0 ) {
@@ -71,7 +71,7 @@ int UserMenager::signIn(  ) {
 }
 
 void UserMenager::changePassword( User &user ) {
-    string newPassword;
+    string newPassword = "";
     displayTitle( "   Zmiana hasla" );
     displayTitle( "Podaj nowe haslo: ", false, false);
     cin>> newPassword;

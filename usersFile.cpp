@@ -15,10 +15,11 @@ string UsersFile::getUsersFileName() {
 }
 
 vector<User> UsersFile::loadUsersFile( ) {
+    fstream fileUsers;
     checkFileExistence( usersFileName );
     fileUsers.open( usersFileName.c_str(), ios::in );
-    string fileLine;
-    int nrLine=1;
+    string fileLine = "";
+    int nrLine = 1;
     vector<User> loadedUsers;
     User newUser;
     while( getline( fileUsers, fileLine, '|') ) {
@@ -43,6 +44,7 @@ vector<User> UsersFile::loadUsersFile( ) {
 }
 
 void UsersFile::saveNewUser( string userOneLineData ) {
+    fstream fileUsers;
     fileUsers.open( usersFileName.c_str(),  ios::app );
     fileUsers<< userOneLineData <<endl;
     fileUsers.close();
@@ -51,7 +53,7 @@ void UsersFile::saveNewUser( string userOneLineData ) {
 void UsersFile::saveAfterPasswordChange ( string userOneLineData, int userID ) {
     string temporaryFileName = usersFileName.substr(0, usersFileName.length() - 4) + "_Tymczasowy.txt" ;
     fstream tempUsersFile;
-
+    fstream fileUsers;
     string fileLine;
     fileUsers.open( usersFileName.c_str(),  ios::in );
     tempUsersFile.open( temporaryFileName.c_str(),  ios::out );
