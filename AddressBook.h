@@ -15,6 +15,8 @@ public:
     void registration();
     void showAllUsers();
     int signIn();
+    void changePassword( int idLoggedUser );
+    int signOut();
 
 
 };

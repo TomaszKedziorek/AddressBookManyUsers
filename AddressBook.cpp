@@ -20,7 +20,14 @@ int AddressBook::signIn(){
     return userMenager.signIn();
 }
 
+void AddressBook::changePassword( int idLoggedUser ){
 
+    userMenager.changePassword( idLoggedUser );
+}
+
+int AddressBook::signOut(){
+    return userMenager.signOut();
+}
 
 
 

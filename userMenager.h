@@ -17,8 +17,8 @@ public:
     void loadUsersFromFile();
     void registration();
     int signIn();
-    void changePassword( User &user );
-    vector<User>::iterator findUserID( int IDLoggedUser );
+    vector<User>::iterator findUserByID( int IDLoggedUser );
+    void changePassword( int IDLoggedUser  );
     int signOut();
     void showAllUsers();
 };
