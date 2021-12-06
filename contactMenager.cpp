@@ -1,6 +1,6 @@
 #include "contactMenager.h"
 ContactMenager::ContactMenager( string contactBookName, int loggedUserID )
-:contactFile( contactBookName ),LOGGED_USER_ID(loggedUserID){
+:CONTACTS_FILE_NAME(contactBookName),contactFile( contactBookName ),LOGGED_USER_ID(loggedUserID){
      vector<Contact> allContactsFromFile = contactFile.loadBookFile( 0, true );
      if( allContactsFromFile.empty() )
         lastContactID = 0;
@@ -48,6 +48,10 @@ int ContactMenager::getLastContactID(){
     return lastContactID;
 }
 
+void ContactMenager::setLastContactID(){
+    lastContactID++;
+}
+
 void ContactMenager::addNewContact( ){
     string name,surname,email,address,phone;
     int newContactID;
@@ -65,6 +69,7 @@ void ContactMenager::addNewContact( ){
     cout<< "Adres: ";
     getline( cin, address );
     newContactID = getLastContactID() +1;
+    setLastContactID();
 
     Contact newContact;
     newContact.setName( name );

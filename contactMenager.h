@@ -9,6 +9,7 @@
 
 class ContactMenager{
     vector<Contact> contacts;
+    const string CONTACTS_FILE_NAME;
     ContactFile contactFile;
     const int LOGGED_USER_ID;
     int lastContactID;
@@ -16,9 +17,10 @@ class ContactMenager{
     void backToMenu();
     void loadContactFromFile();
     int getLastContactID();
-public:
-    ContactMenager( string contactBookName ="ksiazkaAdresowa.txt", int loggedUserID = 0 );
+    void setLastContactID();
     int getIDLoggedUser();
+public:
+    ContactMenager( string contactBookName , int loggedUserID = 0 );
     int showNumbersOfContacts();
     void showAllUserContacts();
     void addNewContact( );

@@ -5,16 +5,25 @@
 //#include <windows.h>
 #include "user.h"
 #include "userMenager.h"
+#include "contactMenager.h"
 using namespace std;
 
 class AddressBook{
     UserMenager userMenager;
-
-public:
-    AddressBook( string usersFileName );
-    void registration();
+    ContactMenager *contactMenager;
+    const string CONTACTS_FILE_NAME;
     void showAllUsers();
+public:
+    AddressBook( string usersFileName ="wszyscyUzytkownicy.txt", string contactsFileName ="ksiazkaAdresowa.txt" );
+    ~AddressBook(){
+        delete contactMenager;
+        contactMenager = NULL;
+    };
+    void registration();
     int signIn();
+    int showNumbersOfContacts();
+    void showAllUserContacts();
+    void addNewContact( );
     void changePassword( int idLoggedUser );
     int signOut();
 

@@ -2,8 +2,10 @@
 #include <iostream>
 using namespace std;
 
-AddressBook::AddressBook( string usersFileName )
-:userMenager( usersFileName ){}
+AddressBook::AddressBook( string usersFileName, string contactsFileName )
+:userMenager( usersFileName ), CONTACTS_FILE_NAME( contactsFileName ){
+    contactMenager = NULL;
+}
 
 void AddressBook::showAllUsers(){
     userMenager.showAllUsers();
@@ -15,7 +17,22 @@ void AddressBook::registration(){
 }
 
 int AddressBook::signIn(){
-    return userMenager.signIn();
+    int IDuser = userMenager.signIn();
+    if ( IDuser > 0 ){
+        contactMenager = new ContactMenager( CONTACTS_FILE_NAME, IDuser );
+    }
+    return IDuser;
+}
+
+int AddressBook::showNumbersOfContacts(){
+    return contactMenager -> showNumbersOfContacts();
+}
+
+void AddressBook::showAllUserContacts(){
+    contactMenager -> showAllUserContacts();
+}
+void AddressBook::addNewContact( ){
+    contactMenager -> addNewContact();
 }
 
 void AddressBook::changePassword( int idLoggedUser ){
@@ -23,7 +40,10 @@ void AddressBook::changePassword( int idLoggedUser ){
 }
 
 int AddressBook::signOut(){
-    return userMenager.signOut();
+    int IDuser = userMenager.signOut();
+    delete contactMenager;
+    contactMenager = NULL;
+    return IDuser;
 }
 
 

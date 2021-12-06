@@ -1,14 +1,14 @@
 #include "contactFile.h"
 
 
-ContactFile::ContactFile( string CONTACTFILENAME )
-    :bookFileName( CONTACTFILENAME ) {};
+ContactFile::ContactFile( string bookFileName )
+    :BOOK_FILE_NAME( bookFileName ) {};
 
 vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContacts ) {
     vector<Contact> allUserContacts;
-    checkFileExistence( bookFileName );
+    checkFileExistence( BOOK_FILE_NAME );
     fstream bookFile;
-    bookFile.open( bookFileName.c_str(), ios::in );
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::in );
 
     string fileLine;
     int nrLine=1;
@@ -58,7 +58,7 @@ vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContact
 void ContactFile::saveAfterAddingContact( string oneLineContactData ) {
     fstream bookFile;
 
-    bookFile.open( bookFileName.c_str(), ios::app );
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::app );
     bookFile<< oneLineContactData <<endl;
 
     bookFile.close();
