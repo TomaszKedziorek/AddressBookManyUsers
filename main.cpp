@@ -3,10 +3,21 @@
 #include "AddressBook.h"
 #include "User.h"
 #include "userMenager.h"
+#include "contact.h"
+#include "contactMenager.h"
+
+
 using namespace std;
 
 int main()
 {
+    ContactMenager contact( "ksiazkaAdresowa.txt" );
+    contact.setIDLggedUser( 6 );
+    contact.loadContactFromFile();
+    contact.showAllUserContacts();
+    contact.addNewContact();
+    contact.showAllUserContacts();
+
     AddressBook addressBook( "wszyscyUzytkownicy.txt" );
     //addressBook.showAllUsers();
 

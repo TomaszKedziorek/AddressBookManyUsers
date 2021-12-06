@@ -72,6 +72,7 @@ int UserMenager::signIn(  ) {
         return 0;
     }
 }
+
 vector<User>::iterator UserMenager::findUserByID( int IDLoggedUser ) {
     vector<User>::iterator itr = users.begin();
     vector<User>::iterator endOfVector = users.end();
@@ -96,8 +97,6 @@ void UserMenager::changePassword( int IDLoggedUser  ) {
     Sleep(1000);
 
 }
-
-
 
 int UserMenager::signOut() {
     displayTitle("Wylogouwywanie...");

@@ -1,8 +1,9 @@
 #include "usersFile.h"
 #include "commonFunk.h"
-#include "user.h"
+//#include "user.h"
 
-UsersFile::UsersFile( string USERSFILENAME ): usersFileName( USERSFILENAME ){};
+UsersFile::UsersFile( string USERSFILENAME )
+: usersFileName( USERSFILENAME ){};
 
 string UsersFile::getUsersFileName() {
     return usersFileName;
