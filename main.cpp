@@ -9,25 +9,25 @@
 
 using namespace std;
 
-int main()
-{
-    ContactMenager contact( "ksiazkaAdresowa.txt" );
-    contact.setIDLggedUser( 6 );
-    contact.loadContactFromFile();
-    contact.showAllUserContacts();
-    contact.addNewContact();
-    contact.showAllUserContacts();
-
+int main() {
     AddressBook addressBook( "wszyscyUzytkownicy.txt" );
-    //addressBook.showAllUsers();
-
-    //addressBook.registration();
     addressBook.showAllUsers();
+    addressBook.registration();
+    int i =0;
+    while( i< 4) {
+        int id = addressBook.signIn();
+        if (id!=0) {
+            ContactMenager contact( "ksiazkaAdresowa.txt" );
+            contact.setIDLggedUser( id );
+            contact.loadContactFromFile();
+            contact.showAllUserContacts();
+            contact.addNewContact();
+            contact.showAllUserContacts();
+            addressBook.changePassword( id );
+            addressBook.signOut();
+        }
+        i++;
+    }
 
-    int id=addressBook.signIn();
-    cout<<id<<endl;
-    if (id!=0)
-        addressBook.changePassword( id );
-    cout<<addressBook.signOut();
     return 0;
 }
