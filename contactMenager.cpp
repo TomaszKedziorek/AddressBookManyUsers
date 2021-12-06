@@ -1,20 +1,19 @@
 #include "contactMenager.h"
-ContactMenager::ContactMenager( string contactBookName )
-:contactFile( contactBookName ){
+ContactMenager::ContactMenager( string contactBookName, int loggedUserID )
+:contactFile( contactBookName ),LOGGED_USER_ID(loggedUserID){
      vector<Contact> allContactsFromFile = contactFile.loadBookFile( 0, true );
      if( allContactsFromFile.empty() )
         lastContactID = 0;
-     else
+     else{
         lastContactID = allContactsFromFile.back().getID_contact();
+        loadContactFromFile();
+     }
     allContactsFromFile.clear();
 }
 
-void ContactMenager::setIDLggedUser( int idUser ){
-    loggedUserID = idUser;
-}
 
 int ContactMenager::getIDLoggedUser(){
-    return loggedUserID;
+    return LOGGED_USER_ID;
 }
 
 void ContactMenager::loadContactFromFile( ){
@@ -41,6 +40,13 @@ void ContactMenager::backToMenu() {
     cout<< "Wcisnij dowolny klawisz aby wrocic do menu." <<endl;
     getch();
 }
+int ContactMenager::showNumbersOfContacts(){
+    return contacts.size();
+}
+
+int ContactMenager::getLastContactID(){
+    return lastContactID;
+}
 
 void ContactMenager::addNewContact( ){
     string name,surname,email,address,phone;
@@ -58,7 +64,7 @@ void ContactMenager::addNewContact( ){
     getline( cin, email );
     cout<< "Adres: ";
     getline( cin, address );
-    newContactID = lastContactID +1;
+    newContactID = getLastContactID() +1;
 
     Contact newContact;
     newContact.setName( name );
@@ -67,7 +73,7 @@ void ContactMenager::addNewContact( ){
     newContact.setEmail( email );
     newContact.setAddress( address );
     newContact.setID_contact( newContactID );
-    newContact.setID_user( loggedUserID );
+    newContact.setID_user( LOGGED_USER_ID );
 
     contacts.push_back( newContact );
     contactFile.saveAfterAddingContact( newContact.changeContactDataToOneLine() );

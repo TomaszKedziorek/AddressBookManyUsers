@@ -10,16 +10,16 @@
 class ContactMenager{
     vector<Contact> contacts;
     ContactFile contactFile;
-    int loggedUserID;
+    const int LOGGED_USER_ID;
     int lastContactID;
     void showFullContact( Contact &contact );
     void backToMenu();
-
-    public:
-    ContactMenager( string contactBookName );
-    void setIDLggedUser( int idUser );
-    int getIDLoggedUser();
     void loadContactFromFile();
+    int getLastContactID();
+public:
+    ContactMenager( string contactBookName ="ksiazkaAdresowa.txt", int loggedUserID = 0 );
+    int getIDLoggedUser();
+    int showNumbersOfContacts();
     void showAllUserContacts();
     void addNewContact( );
 

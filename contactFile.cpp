@@ -2,9 +2,9 @@
 
 
 ContactFile::ContactFile( string CONTACTFILENAME )
-:bookFileName( CONTACTFILENAME ){};
+    :bookFileName( CONTACTFILENAME ) {};
 
-vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContacts ){
+vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContacts ) {
     vector<Contact> allUserContacts;
     checkFileExistence( bookFileName );
     fstream bookFile;
@@ -55,7 +55,7 @@ vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContact
     return allUserContacts;
 }
 
-void ContactFile::saveAfterAddingContact( string oneLineContactData ){
+void ContactFile::saveAfterAddingContact( string oneLineContactData ) {
     fstream bookFile;
 
     bookFile.open( bookFileName.c_str(), ios::app );

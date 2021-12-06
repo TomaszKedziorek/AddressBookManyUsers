@@ -2,7 +2,9 @@
 #include "userMenager.h"
 
 using namespace std;
-UserMenager::UserMenager( string usersFileName ) :userFile( usersFileName ){};
+UserMenager::UserMenager( string usersFileName ) :userFile( usersFileName ){
+    loadUsersFromFile();
+};
 
 void UserMenager::loadUsersFromFile(){
     users = userFile.loadUsersFile(  );

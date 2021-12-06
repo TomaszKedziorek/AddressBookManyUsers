@@ -3,9 +3,7 @@
 using namespace std;
 
 AddressBook::AddressBook( string usersFileName )
-:userMenager( usersFileName ){
-    userMenager.loadUsersFromFile();
-}
+:userMenager( usersFileName ){}
 
 void AddressBook::showAllUsers(){
     userMenager.showAllUsers();
@@ -21,7 +19,6 @@ int AddressBook::signIn(){
 }
 
 void AddressBook::changePassword( int idLoggedUser ){
-
     userMenager.changePassword( idLoggedUser );
 }
 
