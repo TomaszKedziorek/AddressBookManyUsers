@@ -90,7 +90,7 @@ void ContactMenager::confirmRemoving( vector<Contact>::iterator &contactToRemove
         cout<< "t/n ";
         cin>> yesNo;
         if( yesNo == 't' ) {
-            contactFile.saveAfterRemovingContact( (*contactToRemove) );
+            contactFile.saveAfterRemovingContact( contactToRemove -> changeContactDataToOneLine()  );
             contacts.erase( contactToRemove );
             cout<< "Usunieto." <<endl;
             Sleep(500);
@@ -143,5 +143,66 @@ void ContactMenager::removeContact( ) {
     if( numberOfFoundContacts == 0 ) {
         cout<< "Nie ma takiego kontaktu";
         Sleep(1000);
+    }
+}
+
+vector<Contact>::iterator ContactMenager::findContactByID( int idOfSearchedContact ) {
+    vector<Contact>::iterator searchedContact = contacts.begin();
+    vector<Contact>::iterator vectorEnd = contacts.end();
+    while( searchedContact != vectorEnd ) {
+        if( searchedContact-> getID_contact() == idOfSearchedContact )
+            break;
+        ++searchedContact;
+    }
+    return searchedContact;
+}
+
+void ContactMenager::editContact() {
+    char choice;
+    int idEditedContact;
+    string newData;
+    displayTitle( "   Edytuj kontakt.");
+    displayTitle( "Podaj ID kontaktu do edycji: ", false, false);
+    cin>> idEditedContact;
+    vector<Contact>::iterator contactToEdit = findContactByID( idEditedContact );
+    if( contactToEdit == contacts.end() ) {
+        cout<< "Nie ma kontaktu o ID: " << idEditedContact <<endl;
+        Sleep(1000);
+    } else {
+        showFullContact( (*contactToEdit) );
+        displayTitle( "------------------------------------", false, false );
+        cout<<"1. Imie\n2. Nazwisko\n3. Numer telefonu\n4. email\n5. Adres\n6. Powrot do menu" <<endl;
+        choice = getch();
+        if( choice != '6') {
+            cout<< "Wpisz nowe: " <<endl;
+            cin.ignore();
+            getline(cin, newData);
+        }
+        switch( choice ) {
+        case '1':
+            contactToEdit->setName( newData );
+            break;
+        case '2':
+            contactToEdit->setSurname( newData );
+            break;
+        case '3':
+            contactToEdit->setPhone( newData );
+            break;
+        case '4':
+            contactToEdit->setEmail( newData );
+            break;
+        case '5':
+            contactToEdit->setAddress( newData );
+            break;
+        case '6':
+            backToMenu();
+            break;
+        }
+        if( choice != '6') {
+            displayTitle( "Kontakt po edycji:", false, false );
+            showFullContact( (*contactToEdit) );
+            Sleep(1500);
+            contactFile.saveAfterEditing( contactToEdit -> changeContactDataToOneLine()  );
+        }
     }
 }

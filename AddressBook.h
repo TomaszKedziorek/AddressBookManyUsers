@@ -1,8 +1,6 @@
 #ifndef ADDRESSBOOK_H
 #define ADDRESSBOOK_H
 #include <iostream>
-//#include <cstdlib>
-//#include <windows.h>
 #include "user.h"
 #include "userMenager.h"
 #include "contactMenager.h"
@@ -25,6 +23,7 @@ public:
     void showAllUserContacts();
     void addNewContact( );
     void changePassword( int idLoggedUser );
+    void editContact();
     void removeContact( );
     int signOut();
 

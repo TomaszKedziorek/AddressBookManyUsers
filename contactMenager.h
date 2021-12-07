@@ -21,6 +21,7 @@ class ContactMenager{
     void setLastContactID();
     int getIDLoggedUser();
     void confirmRemoving( vector<Contact>::iterator &contactToRemove );
+    vector<Contact>::iterator findContactByID( int idOfSearchedContact );
 
 public:
     ContactMenager( string contactBookName , int loggedUserID = 0 );
@@ -28,6 +29,7 @@ public:
     void showAllUserContacts();
     void addNewContact( );
     void removeContact( );
+    void editContact();
 
 };
 #endif // CONTACTMENAGER_H

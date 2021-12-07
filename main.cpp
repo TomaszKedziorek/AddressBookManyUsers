@@ -56,6 +56,7 @@ int main() {
                     case '4':
                         break;
                     case '6':
+                        addressBook.editContact();
                         break;
                     case '7':
                         addressBook.removeContact();
@@ -83,7 +84,11 @@ int _main() {
 
     ContactMenager contact( "ksiazkaAdresowa.txt", 1 );
     contact.showAllUserContacts();
-    contact.removeContact();
+    contact.editContact();
+    contact.showAllUserContacts();
+        contact.removeContact();
+    contact.showAllUserContacts();
+        contact.editContact();
     contact.showAllUserContacts();
     return 0;
 }
