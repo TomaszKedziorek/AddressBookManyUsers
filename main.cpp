@@ -58,6 +58,7 @@ int main() {
                     case '6':
                         break;
                     case '7':
+                        addressBook.removeContact();
                         break;
                     case '8':
                         addressBook.changePassword( IDuser );
@@ -79,21 +80,10 @@ int main() {
 }
 
 int _main() {
-    AddressBook addressBook( "wszyscyUzytkownicy.txt" );
-    addressBook.registration();
-    int i =0;
-    while( i< 4) {
-        int id = addressBook.signIn();
-        if (id!=0) {
-            ContactMenager contact( "ksiazkaAdresowa.txt" );
-            contact.showAllUserContacts();
-            contact.addNewContact();
-            contact.showAllUserContacts();
-            addressBook.changePassword( id );
-            addressBook.signOut();
-        }
-        i++;
-    }
 
+    ContactMenager contact( "ksiazkaAdresowa.txt", 1 );
+    contact.showAllUserContacts();
+    contact.removeContact();
+    contact.showAllUserContacts();
     return 0;
 }

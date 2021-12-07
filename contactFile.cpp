@@ -65,3 +65,23 @@ void ContactFile::saveAfterAddingContact( string oneLineContactData ) {
     cout<< "Zmiany zostaly zapisane.";
     Sleep(500);
 }
+
+void ContactFile::saveAfterRemovingContact( Contact &contact ) {
+    string temporaryNewFileName = BOOK_FILE_NAME.substr(0, BOOK_FILE_NAME.length() - 4) + "_Tymczasowy.txt" ;
+    fstream bookFile;
+    fstream temporaryBookFile;
+    string fileLine;
+
+    cout<< "Zapisuje..." <<endl;
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::in );
+    temporaryBookFile.open( temporaryNewFileName.c_str(), ios::out );
+
+    while( getline( bookFile, fileLine ) ) {
+        if ( atoi( fileLine.c_str() ) != contact.getID_contact()  )
+            temporaryBookFile<< fileLine <<endl;
+    }
+    bookFile.close();
+    temporaryBookFile.close();
+    remove( BOOK_FILE_NAME.c_str() );
+    rename( temporaryNewFileName.c_str(), BOOK_FILE_NAME.c_str() );
+}

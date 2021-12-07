@@ -13,17 +13,21 @@ class ContactMenager{
     ContactFile contactFile;
     const int LOGGED_USER_ID;
     int lastContactID;
+
     void showFullContact( Contact &contact );
     void backToMenu();
     void loadContactFromFile();
     int getLastContactID();
     void setLastContactID();
     int getIDLoggedUser();
+    void confirmRemoving( vector<Contact>::iterator &contactToRemove );
+
 public:
     ContactMenager( string contactBookName , int loggedUserID = 0 );
     int showNumbersOfContacts();
     void showAllUserContacts();
     void addNewContact( );
+    void removeContact( );
 
 };
 #endif // CONTACTMENAGER_H

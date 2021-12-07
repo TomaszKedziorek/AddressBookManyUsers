@@ -25,6 +25,7 @@ public:
     void showAllUserContacts();
     void addNewContact( );
     void changePassword( int idLoggedUser );
+    void removeContact( );
     int signOut();
 
 

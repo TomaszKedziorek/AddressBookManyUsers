@@ -84,3 +84,64 @@ void ContactMenager::addNewContact( ){
     contactFile.saveAfterAddingContact( newContact.changeContactDataToOneLine() );
 }
 
+void ContactMenager::confirmRemoving( vector<Contact>::iterator &contactToRemove ) {
+    char yesNo;
+    do {
+        cout<< "t/n ";
+        cin>> yesNo;
+        if( yesNo == 't' ) {
+            contactFile.saveAfterRemovingContact( (*contactToRemove) );
+            contacts.erase( contactToRemove );
+            cout<< "Usunieto." <<endl;
+            Sleep(500);
+        } else if( yesNo == 'n' ) {
+            cout<< "Nie usunieto." <<endl;
+            Sleep(500);
+        } else
+            continue;
+    } while( yesNo != 't' && yesNo != 'n' );
+}
+
+void ContactMenager::removeContact( ) {
+    string nameToRemove,surnameToRemove;
+    int idToRemove;
+    char choice;
+    int numberOfFoundContacts = 0;
+
+    displayTitle( "   Usun kontakt.");
+    cout<< "1. Wedlug imienia i naywiska.\n2. Wedlug ID." <<endl;
+    choice = getch();
+    switch(choice) {
+    case '1': {
+        cout<< "Wpisz imie i nazwisko kontaktu do usuniecia." <<endl;
+        cout<< "Imie: " ;
+        cin>> nameToRemove;
+        cin.ignore();
+        cout<< "Nazwisko: ";
+        getline( cin, surnameToRemove);
+        break;
+    }
+    case '2': {
+        cout<< "Wpisz ID kontaktu do usuniecia." <<endl;
+        cin>> idToRemove;
+        break;
+    }
+    }
+    vector<Contact>::iterator contactToRemove = contacts.begin();
+    for( unsigned int i=0; i<contacts.size(); i++ ) {
+        if( ( contacts[i].getName() == nameToRemove && contacts[i].getSurname() == surnameToRemove) || (contacts[i].getID_contact() == idToRemove) ) {
+            displayTitle( "Czy napewno chcesz usunicto ten kontakt?", false, false );
+            showFullContact( contacts[i] );
+            displayTitle( "------------------------------------", false, false );
+            confirmRemoving( contactToRemove );
+            numberOfFoundContacts++;
+            ++contactToRemove;
+        } else {
+            ++contactToRemove;
+        }
+    }
+    if( numberOfFoundContacts == 0 ) {
+        cout<< "Nie ma takiego kontaktu";
+        Sleep(1000);
+    }
+}

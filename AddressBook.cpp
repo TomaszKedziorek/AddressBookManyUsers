@@ -35,6 +35,11 @@ void AddressBook::addNewContact( ){
     contactMenager -> addNewContact();
 }
 
+void AddressBook::removeContact( ){
+    contactMenager -> removeContact();
+}
+
+
 void AddressBook::changePassword( int idLoggedUser ){
     userMenager.changePassword( idLoggedUser );
 }

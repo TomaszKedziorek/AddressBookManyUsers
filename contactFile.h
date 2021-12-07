@@ -11,6 +11,7 @@ public:
     ContactFile( string bookFileName );
     vector<Contact> loadBookFile( int loggedUserID, bool laodAllContacts = false );
     void saveAfterAddingContact( string oneLineContactData );
+    void saveAfterRemovingContact( Contact &contact );
 };
 
 #endif // CONTACT_H
