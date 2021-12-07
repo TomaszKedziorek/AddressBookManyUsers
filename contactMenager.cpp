@@ -58,8 +58,7 @@ void ContactMenager::addNewContact( ){
     displayTitle( "   Dodaj nowy kontakt." );
 
     cout<< "Imie: ";
-    cin>> name ;
-    cin.ignore();
+    name = typeStringData();
     cout<< "Nazwisko: ";
     getline( cin, surname );
     cout<< "Telefon: ";
@@ -104,8 +103,8 @@ void ContactMenager::confirmRemoving( vector<Contact>::iterator &contactToRemove
 }
 
 void ContactMenager::removeContact( ) {
-    string nameToRemove,surnameToRemove;
-    int idToRemove;
+    string nameToRemove =" ",surnameToRemove =" ";
+    int idToRemove =0;
     char choice;
     int numberOfFoundContacts = 0;
 
@@ -116,8 +115,7 @@ void ContactMenager::removeContact( ) {
     case '1': {
         cout<< "Wpisz imie i nazwisko kontaktu do usuniecia." <<endl;
         cout<< "Imie: " ;
-        cin>> nameToRemove;
-        cin.ignore();
+        nameToRemove = typeStringData();
         cout<< "Nazwisko: ";
         getline( cin, surnameToRemove);
         break;
@@ -160,8 +158,8 @@ vector<Contact>::iterator ContactMenager::findContactByID( int idOfSearchedConta
 
 void ContactMenager::editContact() {
     char choice;
-    int idEditedContact;
-    string newData;
+    int idEditedContact=0;
+    string newData="";
     displayTitle( "   Edytuj kontakt.");
     displayTitle( "Podaj ID kontaktu do edycji: ", false, false);
     cin>> idEditedContact;
@@ -209,9 +207,9 @@ void ContactMenager::editContact() {
 }
 
 void ContactMenager::findContactByNameOrSurname() {
-    string searched = " ";
+    string searched ="";
     int foundContacs = 0;
-    getline(cin, searched);
+    searched = typeStringData();
     cout<< endl;
     for( unsigned int i=0; i<contacts.size(); i++ ) {
         if( contacts[i].getName() == searched || contacts[i].getSurname() == searched ) {

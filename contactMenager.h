@@ -30,7 +30,7 @@ public:
     void addNewContact( );
     void removeContact( );
     void editContact();
-    void findContactByNameOrSurname();
+    void findContactByNameOrSurname( );
 
 };
 #endif // CONTACTMENAGER_H

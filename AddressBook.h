@@ -28,8 +28,6 @@ public:
     void findContactByName();
     void findContactBySurname();
     int signOut();
-
-
 };
 
 

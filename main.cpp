@@ -30,7 +30,7 @@ int main() {
                 while( IDuser > 0) {
                     displayTitle( "   Ksiazka Adresowa", true, true );
                     displayTitle( "Zalogowany: ", false, false );
-                    cout<<  "\tID: " << IDuser;
+                    cout<<  "ID: " << IDuser;
                     cout<< "\tLiczba kontaktow:" << addressBook.showNumbersOfContacts();
                     displayTitle( "", true, false );
                     cout<< "1. Wyswitl wszystko." <<endl;
@@ -43,7 +43,7 @@ int main() {
                     cout<< "9. Wyloguj sie." <<endl;
                     cout<< "Twoj wybor:";
 
-                    choise2 = getch();
+                    choise2 = cin.get();
                     switch( choise2 ) {
                     case '1':
                         addressBook.showAllUserContacts();
@@ -87,7 +87,8 @@ int _main() {
     ContactMenager contact( "ksiazkaAdresowa.txt", 1 );
     contact.showAllUserContacts();
     cout<<"wpisz: "<<endl;
-    contact.findContactByNameOrSurname();
+    getch();
+    contact.removeContact();
 
     return 0;
 }
