@@ -100,6 +100,7 @@ void ContactMenager::confirmRemoving( vector<Contact>::iterator &contactToRemove
         } else
             continue;
     } while( yesNo != 't' && yesNo != 'n' );
+    cin.ignore();
 }
 
 void ContactMenager::removeContact( ) {
@@ -210,8 +211,7 @@ void ContactMenager::editContact() {
 void ContactMenager::findContactByNameOrSurname() {
     string searched = " ";
     int foundContacs = 0;
-    cin.ignore();
-    getline(cin, searched );
+    getline(cin, searched);
     cout<< endl;
     for( unsigned int i=0; i<contacts.size(); i++ ) {
         if( contacts[i].getName() == searched || contacts[i].getSurname() == searched ) {

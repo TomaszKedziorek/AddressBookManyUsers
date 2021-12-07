@@ -8,4 +8,5 @@ using namespace std;
 void displayTitle( string title, bool showLine = true, bool screenClear = true );
 void checkFileExistence( string fileName );
 string IntToString( int n );
+string typeStringData();
 #endif // COMMONFUNK_H

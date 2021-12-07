@@ -29,3 +29,10 @@ string IntToString( int n ){
     string nstr=ss.str();
     return nstr;
 }
+
+string typeStringData(){
+    string inputString = " ";
+    getline( cin, inputString );
+    return inputString;
+}
+
