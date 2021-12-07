@@ -12,6 +12,7 @@ void displayTitle( string title, bool showLine, bool screenClear ) {
         cout<< "------------------------------------" <<endl;
     SetConsoleTextAttribute( GetStdHandle(STD_OUTPUT_HANDLE), 15 );
 }
+
 void checkFileExistence( string fileName ) {
     fstream file;
     file.open( fileName.c_str() );
@@ -23,9 +24,16 @@ void checkFileExistence( string fileName ) {
     file.close();
 }
 
-string IntToString( int n ){
+string IntToString( int n ) {
     ostringstream ss;
     ss << n;
     string nstr=ss.str();
     return nstr;
+}
+
+string typeStringData() {
+    string inputString = "";
+    cin.ignore();
+    getline( cin, inputString );
+    return inputString;
 }

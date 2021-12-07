@@ -1,17 +1,17 @@
 #include "contactFile.h"
 
 
-ContactFile::ContactFile( string CONTACTFILENAME )
-    :bookFileName( CONTACTFILENAME ) {};
+ContactFile::ContactFile( string bookFileName )
+    :BOOK_FILE_NAME( bookFileName ) {};
 
 vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContacts ) {
     vector<Contact> allUserContacts;
-    checkFileExistence( bookFileName );
+    checkFileExistence( BOOK_FILE_NAME );
     fstream bookFile;
-    bookFile.open( bookFileName.c_str(), ios::in );
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::in );
 
-    string fileLine;
-    int nrLine=1;
+    string fileLine = " ";
+    int nrLine = 1;
     Contact newContact;
     while( getline( bookFile, fileLine, '|') ) {
         switch( nrLine % 7 ) {
@@ -58,10 +58,55 @@ vector<Contact> ContactFile::loadBookFile( int loggedUserID, bool laodAllContact
 void ContactFile::saveAfterAddingContact( string oneLineContactData ) {
     fstream bookFile;
 
-    bookFile.open( bookFileName.c_str(), ios::app );
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::app );
     bookFile<< oneLineContactData <<endl;
 
     bookFile.close();
+    cout<< "Zmiany zostaly zapisane.";
+    Sleep(500);
+}
+
+void ContactFile::saveAfterRemovingContact( string oneLineContactData ) {
+    string temporaryNewFileName = BOOK_FILE_NAME.substr(0, BOOK_FILE_NAME.length() - 4) + "_Tymczasowy.txt" ;
+    fstream bookFile;
+    fstream temporaryBookFile;
+    string fileLine = " ";
+
+    cout<< "Zapisuje..." <<endl;
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::in );
+    temporaryBookFile.open( temporaryNewFileName.c_str(), ios::out );
+
+    while( getline( bookFile, fileLine ) ) {
+        if ( atoi( fileLine.c_str() ) != atoi( oneLineContactData.c_str() )  )
+            temporaryBookFile<< fileLine <<endl;
+    }
+    bookFile.close();
+    temporaryBookFile.close();
+    remove( BOOK_FILE_NAME.c_str() );
+    rename( temporaryNewFileName.c_str(), BOOK_FILE_NAME.c_str() );
+}
+
+void ContactFile::saveAfterEditing( string oneLineContactData  ) {
+    string temporaryNewFileName = BOOK_FILE_NAME.substr(0, BOOK_FILE_NAME.length() - 4) + "_Tymczasowy.txt" ;
+    fstream bookFile;
+    fstream temporaryBookFile;
+    string fileLine = " ";
+
+    cout<< "Zapisuje..." <<endl;
+    bookFile.open( BOOK_FILE_NAME.c_str(), ios::in );
+    temporaryBookFile.open( temporaryNewFileName.c_str(), ios::out );
+    while( getline( bookFile, fileLine ) ) {
+
+        if ( atoi( fileLine.c_str() ) == atoi( oneLineContactData.c_str() ) ) {
+            temporaryBookFile<< oneLineContactData <<endl;
+        } else {
+            temporaryBookFile<< fileLine <<endl;
+        }
+    }
+    bookFile.close();
+    temporaryBookFile.close();
+    remove( BOOK_FILE_NAME.c_str() );
+    rename( temporaryNewFileName.c_str(), BOOK_FILE_NAME.c_str() );
     cout<< "Zmiany zostaly zapisane.";
     Sleep(500);
 }
