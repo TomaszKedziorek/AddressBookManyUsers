@@ -25,6 +25,8 @@ public:
     void changePassword( int idLoggedUser );
     void editContact();
     void removeContact( );
+    void findContactByName();
+    void findContactBySurname();
     int signOut();
 
 

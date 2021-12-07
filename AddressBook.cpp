@@ -53,5 +53,14 @@ int AddressBook::signOut(){
     return IDuser;
 }
 
+void AddressBook::findContactByName(){
+    displayTitle("   Szukaj po imieniu.");
+    cout<< "Wpisz szukane imie: ";
+    contactMenager -> findContactByNameOrSurname();
+}
 
-
+void AddressBook::findContactBySurname(){
+    displayTitle("   Szukaj po nazwisku.");
+    cout<< "Wpisz szukane nazwisko: ";
+    contactMenager -> findContactByNameOrSurname();
+}

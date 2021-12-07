@@ -206,3 +206,22 @@ void ContactMenager::editContact() {
         }
     }
 }
+
+void ContactMenager::findContactByNameOrSurname() {
+    string searched = " ";
+    int foundContacs = 0;
+    cin.ignore();
+    getline(cin, searched );
+    cout<< endl;
+    for( unsigned int i=0; i<contacts.size(); i++ ) {
+        if( contacts[i].getName() == searched || contacts[i].getSurname() == searched ) {
+            showFullContact( contacts[i] );
+            displayTitle( "------------------------------------", false, false );
+            foundContacs++;
+        }
+    }
+    if( foundContacs == 0 ) {
+        cout<< "Nie znaleziono kontaktu dla : " << searched <<endl;
+    }
+    backToMenu();
+}

@@ -52,8 +52,10 @@ int main() {
                         addressBook.addNewContact();
                         break;
                     case '3':
+                        addressBook.findContactByName();
                         break;
                     case '4':
+                        addressBook.findContactBySurname();
                         break;
                     case '6':
                         addressBook.editContact();
@@ -84,11 +86,8 @@ int _main() {
 
     ContactMenager contact( "ksiazkaAdresowa.txt", 1 );
     contact.showAllUserContacts();
-    contact.editContact();
-    contact.showAllUserContacts();
-        contact.removeContact();
-    contact.showAllUserContacts();
-        contact.editContact();
-    contact.showAllUserContacts();
+    cout<<"wpisz: "<<endl;
+    contact.findContactByNameOrSurname();
+
     return 0;
 }
