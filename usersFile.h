@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class UsersFile{
+class UsersFile {
     const string usersFileName;
     string getUsersFileName();
 public:

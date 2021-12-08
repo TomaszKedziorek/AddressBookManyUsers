@@ -1,33 +1,33 @@
 #include "contactMenager.h"
 ContactMenager::ContactMenager( string contactBookName, int loggedUserID )
-:CONTACTS_FILE_NAME(contactBookName),contactFile( contactBookName ),LOGGED_USER_ID(loggedUserID){
-     vector<Contact> allContactsFromFile = contactFile.loadBookFile( 0, true );
-     if( allContactsFromFile.empty() )
+    :CONTACTS_FILE_NAME(contactBookName),contactFile( contactBookName ),LOGGED_USER_ID(loggedUserID) {
+    vector<Contact> allContactsFromFile = contactFile.loadBookFile( 0, true );
+    if( allContactsFromFile.empty() )
         lastContactID = 0;
-     else{
+    else {
         lastContactID = allContactsFromFile.back().getID_contact();
         loadContactFromFile();
-     }
+    }
     allContactsFromFile.clear();
 }
 
 
-int ContactMenager::getIDLoggedUser(){
+int ContactMenager::getIDLoggedUser() {
     return LOGGED_USER_ID;
 }
 
-void ContactMenager::loadContactFromFile( ){
+void ContactMenager::loadContactFromFile( ) {
     contacts = contactFile.loadBookFile( getIDLoggedUser() );
 }
 
-void ContactMenager::showFullContact( Contact &contact ){
+void ContactMenager::showFullContact( Contact &contact ) {
     cout<< contact.getName() << " " << contact.getSurname() <<endl;
     cout<< "tel.: " << contact.getPhone() << " email: " << contact.getEmail() <<endl;
     cout<< contact.getAddress() <<endl;
     cout<< "ID: "<< contact.getID_contact() <<endl;
 }
 
-void ContactMenager::showAllUserContacts(){
+void ContactMenager::showAllUserContacts() {
     displayTitle( "   Wszystkie kontakty." );
     for( unsigned int i=0; i<contacts.size(); i++ ) {
         showFullContact( contacts[i] );
@@ -40,19 +40,19 @@ void ContactMenager::backToMenu() {
     cout<< "Wcisnij dowolny klawisz aby wrocic do menu." <<endl;
     getch();
 }
-int ContactMenager::showNumbersOfContacts(){
+int ContactMenager::showNumbersOfContacts() {
     return contacts.size();
 }
 
-int ContactMenager::getLastContactID(){
+int ContactMenager::getLastContactID() {
     return lastContactID;
 }
 
-void ContactMenager::setLastContactID(){
+void ContactMenager::setLastContactID() {
     lastContactID++;
 }
 
-void ContactMenager::addNewContact( ){
+void ContactMenager::addNewContact( ) {
     string name,surname,email,address,phone;
     int newContactID;
     displayTitle( "   Dodaj nowy kontakt." );

@@ -6,14 +6,14 @@
 #include "contactMenager.h"
 using namespace std;
 
-class AddressBook{
+class AddressBook {
     UserMenager userMenager;
     ContactMenager *contactMenager;
     const string CONTACTS_FILE_NAME;
     void showAllUsers();
 public:
     AddressBook( string usersFileName ="wszyscyUzytkownicy.txt", string contactsFileName ="ksiazkaAdresowa.txt" );
-    ~AddressBook(){
+    ~AddressBook() {
         delete contactMenager;
         contactMenager = NULL;
     };
@@ -29,7 +29,6 @@ public:
     void findContactBySurname();
     int signOut();
 };
-
 
 
 #endif //ADDRESSBOOK_H

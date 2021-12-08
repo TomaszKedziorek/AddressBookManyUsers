@@ -3,7 +3,7 @@
 //#include "user.h"
 
 UsersFile::UsersFile( string USERSFILENAME )
-: usersFileName( USERSFILENAME ){};
+    : usersFileName( USERSFILENAME ) {};
 
 string UsersFile::getUsersFileName() {
     return usersFileName;

@@ -81,14 +81,3 @@ int main() {
     }
     return 0;
 }
-
-int _main() {
-
-    ContactMenager contact( "ksiazkaAdresowa.txt", 1 );
-    contact.showAllUserContacts();
-    cout<<"wpisz: "<<endl;
-    getch();
-    contact.removeContact();
-
-    return 0;
-}

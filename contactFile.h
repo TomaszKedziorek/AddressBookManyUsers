@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class ContactFile{
+class ContactFile {
     const string BOOK_FILE_NAME;
 public:
     ContactFile( string bookFileName );

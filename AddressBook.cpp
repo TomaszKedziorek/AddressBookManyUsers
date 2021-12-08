@@ -3,63 +3,63 @@
 using namespace std;
 
 AddressBook::AddressBook( string usersFileName, string contactsFileName )
-:userMenager( usersFileName ), CONTACTS_FILE_NAME( contactsFileName ){
+    :userMenager( usersFileName ), CONTACTS_FILE_NAME( contactsFileName ) {
     contactMenager = NULL;
 }
 
-void AddressBook::showAllUsers(){
+void AddressBook::showAllUsers() {
     userMenager.showAllUsers();
     Sleep(2000);
 }
 
-void AddressBook::registration(){
+void AddressBook::registration() {
     userMenager.registration();
 }
 
-int AddressBook::signIn(){
+int AddressBook::signIn() {
     int IDuser = userMenager.signIn();
-    if ( IDuser > 0 ){
+    if ( IDuser > 0 ) {
         contactMenager = new ContactMenager( CONTACTS_FILE_NAME, IDuser );
     }
     return IDuser;
 }
 
-int AddressBook::showNumbersOfContacts(){
+int AddressBook::showNumbersOfContacts() {
     return contactMenager -> showNumbersOfContacts();
 }
 
-void AddressBook::showAllUserContacts(){
+void AddressBook::showAllUserContacts() {
     contactMenager -> showAllUserContacts();
 }
-void AddressBook::addNewContact( ){
+void AddressBook::addNewContact( ) {
     contactMenager -> addNewContact();
 }
 
-void AddressBook::removeContact( ){
+void AddressBook::removeContact( ) {
     contactMenager -> removeContact();
 }
-void AddressBook::editContact(){
+void AddressBook::editContact() {
     contactMenager -> editContact();
 }
 
-void AddressBook::changePassword( int idLoggedUser ){
+void AddressBook::changePassword( int idLoggedUser ) {
     userMenager.changePassword( idLoggedUser );
 }
 
-int AddressBook::signOut(){
+int AddressBook::signOut() {
     int IDuser = userMenager.signOut();
     delete contactMenager;
     contactMenager = NULL;
     return IDuser;
 }
 
-void AddressBook::findContactByName(){
+void AddressBook::findContactByName() {
     displayTitle("   Szukaj po imieniu.");
     cout<< "Wpisz szukane imie: ";
     contactMenager -> findContactByNameOrSurname();
 }
 
-void AddressBook::findContactBySurname(){
+void AddressBook::findContactBySurname() {
     displayTitle("   Szukaj po nazwisku.");
     cout<< "Wpisz szukane nazwisko: ";
     contactMenager -> findContactByNameOrSurname();

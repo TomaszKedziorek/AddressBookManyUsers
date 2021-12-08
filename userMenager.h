@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class UserMenager{
+class UserMenager {
     vector<User> users;
     UsersFile userFile;
 public:

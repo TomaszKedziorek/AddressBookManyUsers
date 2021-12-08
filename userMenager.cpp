@@ -2,11 +2,11 @@
 #include "userMenager.h"
 
 using namespace std;
-UserMenager::UserMenager( string usersFileName ) :userFile( usersFileName ){
+UserMenager::UserMenager( string usersFileName ) :userFile( usersFileName ) {
     loadUsersFromFile();
 };
 
-void UserMenager::loadUsersFromFile(){
+void UserMenager::loadUsersFromFile() {
     users = userFile.loadUsersFile(  );
 }
 
@@ -106,7 +106,7 @@ int UserMenager::signOut() {
     return 0;
 }
 
-void UserMenager::showAllUsers(){
+void UserMenager::showAllUsers() {
     for( unsigned int i=0; i< users.size(); i++)
         users[i].showUserData();
 }

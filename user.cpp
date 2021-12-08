@@ -35,7 +35,7 @@ string User::getPassword() {
 int User::getID() {
     return userID;
 }
-string User::changeUserDataToOneLine(){
+string User::changeUserDataToOneLine() {
     int id = getID();
     return IntToString( id ) + "|" + getLogin() + "|" + getPassword() + "|";
 }

@@ -7,7 +7,7 @@
 #include <vector>
 #include <conio.h>
 
-class ContactMenager{
+class ContactMenager {
     vector<Contact> contacts;
     const string CONTACTS_FILE_NAME;
     ContactFile contactFile;
@@ -24,7 +24,7 @@ class ContactMenager{
     vector<Contact>::iterator findContactByID( int idOfSearchedContact );
 
 public:
-    ContactMenager( string contactBookName , int loggedUserID = 0 );
+    ContactMenager( string contactBookName, int loggedUserID = 0 );
     int showNumbersOfContacts();
     void showAllUserContacts();
     void addNewContact( );
