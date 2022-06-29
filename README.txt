@@ -1,5 +1,5 @@
 # AddressBookManyUsers
-Object-Oriented Address Book Multiple Users
+Książka Adresowa przeznaczona dla wielu użytkowników, wykonana w języku C++ w paradygmacie obiektowym.
 
    Ksiazka Adresowa
 ------------------------------------
